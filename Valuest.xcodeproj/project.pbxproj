@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				3F4118292803594000D0DA36 /* Shared Components */,
-				3FF8839E27FCA37600117D94 /* Main */,
+				3FF8839E27FCA37600117D94 /* Main View */,
 				3FF2239C27D7E18300876236 /* Authorization */,
 				3FFA786827D8B1C70083FF4A /* Explore */,
 				3FFA786927D8B1D80083FF4A /* Portfoios */,
@@ -381,14 +381,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		3FF8839E27FCA37600117D94 /* Main */ = {
+		3FF8839E27FCA37600117D94 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
 				3FAC25CD280480C400774B00 /* Components */,
 				3F4118282803592A00D0DA36 /* ViewModel */,
 				3F4118272803592200D0DA36 /* View */,
 			);
-			path = Main;
+			path = "Main View";
 			sourceTree = "<group>";
 		};
 		3FFA786827D8B1C70083FF4A /* Explore */ = {
@@ -586,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -641,7 +641,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -670,7 +670,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,7 +707,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -753,8 +753,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.11.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

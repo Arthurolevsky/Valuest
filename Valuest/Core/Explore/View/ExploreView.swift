@@ -22,6 +22,9 @@ struct ExploreView: View {
                 Text("Opp")
             }
         }
+        .refreshable {
+            
+        }
         .padding(.horizontal)
         .frame(width: getRect().width)
     }
