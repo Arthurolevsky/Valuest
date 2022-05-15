@@ -52,7 +52,8 @@ struct BannerModifier: ViewModifier {
                     .cornerRadius(10)
                 }
                 .padding(.horizontal)
-                .animation(.easeInOut(duration: 0.2))
+                .animation(.easeIn(duration: 0.2), value: showBanner)
+//                .animation(.easeInOut(duration: 0.2))
                 .offset(x: 0, y: dragOffset.height)
                 .transition(AnyTransition.move(edge: .top))
                 .onTapGesture {

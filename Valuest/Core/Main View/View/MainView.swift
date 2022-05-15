@@ -15,6 +15,7 @@ struct MainView: View {
     @StateObject var sideMenu: SideMenuViewModel = SideMenuViewModel()
     
     var body: some View {
+        
         let sideBarWidth = getRect().width - 60
         
         ZStack {
@@ -29,13 +30,12 @@ struct MainView: View {
                 
                 VStack(spacing: 0) {
                     
-                    NavigationBar(viewRouter: viewRouter)
-                        .environmentObject(sideMenu)
-                    
                     switch viewRouter.selectedScreen {
                         case .explore:
                             ExploreView()
                                 .environmentObject(viewRouter)
+                                .environmentObject(sideMenu)
+                                .environmentObject(session)
                         case .research:
                             ResearchView()
                         case .portfolios:
@@ -53,7 +53,10 @@ struct MainView: View {
                         )
                         .ignoresSafeArea(.container, edges: .vertical)
                         .onTapGesture {
-                            sideMenu.showLeftSideMenu.toggle()
+                            withAnimation(.linear(duration: 0.2)) {
+                                sideMenu.showLeftSideMenu.toggle()
+
+                            }
                         }
                 )
             }
@@ -62,8 +65,14 @@ struct MainView: View {
             .offset(x: sideMenu.offset > 0 ? sideMenu.offset : 0)
         }
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("")
         .navigationBarHidden(true)
-        .animation(.easeOut(duration: 0.2), value: sideMenu.offset == 0)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .sheet(isPresented: $viewRouter.showAuthFlow, content: {
+            AuthView()
+                .environmentObject(session)
+        })
+        .animation(.linear(duration: 0.2), value: sideMenu.offset == 0)
         .onChange(of: sideMenu.showLeftSideMenu) { newValue in
             
             if sideMenu.showLeftSideMenu && sideMenu.offset == 0 {
@@ -74,6 +83,11 @@ struct MainView: View {
             if !sideMenu.showLeftSideMenu && sideMenu.offset == sideBarWidth {
                 sideMenu.offset = 0
                 sideMenu.lastStoredOffset = 0
+            }
+        }
+        .onChange(of: session.state) { state in
+            if state == .loggedOut {
+                sideMenu.showLeftSideMenu = false
             }
         }
     }

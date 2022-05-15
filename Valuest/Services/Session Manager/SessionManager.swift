@@ -57,8 +57,6 @@ extension SessionManager {
             guard let self = self else { return }
             self.state = user == nil ? .loggedOut : .loggedIn
             if let user = user {
-                print(user)
-                print(self.state)
                 UserDefaults.standard.set(user.uid, forKey: "uid")
                 user.getIDToken { token, error in
                     guard let token = token else {

@@ -20,18 +20,8 @@ struct ValuestApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                switch session.state {
-                    case .loggedIn:
-                        MainView()
-                            .environmentObject(session)
-                    case .loggedOut:
-                        if session.isFirstLaunch {
-                            SignUpView()
-                        } else {
-                            SignInView()
-
-                        }
-                }
+                MainView()
+                    .environmentObject(session)
             }
         }
     }

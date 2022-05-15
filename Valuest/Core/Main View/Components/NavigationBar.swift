@@ -11,14 +11,24 @@ struct NavigationBar: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject var sideMenu: SideMenuViewModel
+    @EnvironmentObject var session: SessionManager
+
     @ObservedObject var viewRouter: ViewRouter
     
     var body: some View {
         HStack(alignment: .center) {
+            Text(viewRouter.selectedScreen.rawValue)
+                .font(.title.bold())
             
+            Spacer()
+
             Button {
-                withAnimation {
-                    sideMenu.showLeftSideMenu.toggle()
+                if session.state == .loggedIn {
+                    withAnimation(.linear(duration: 0.2)) {
+                        sideMenu.showLeftSideMenu.toggle()
+                    }
+                } else {
+                    viewRouter.showAuthFlow = true
                 }
             } label: {
                 Image("Avatar")
@@ -27,13 +37,7 @@ struct NavigationBar: View {
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
             }
-            
-            Spacer()
         }
-        .overlay(Text(viewRouter.selectedScreen.rawValue)
-            .font(.headline.weight(.semibold)))
-        .padding(.horizontal)
         .padding(.bottom, 6)
-        .frame(width: getRect().width)
     }
 }

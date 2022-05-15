@@ -16,7 +16,10 @@ enum Screens: String {
 final class ViewRouter: ObservableObject {
     
     @Published var selectedScreen: Screens = .explore
+    @Published var showAuthFlow: Bool = false
     
+    /// Function changes selectedScreen variable, therefore it changes shown screen.
+    /// - Parameter screen: Screen that we want to show user
     func change(to screen: Screens) {
         self.selectedScreen = screen
     }
